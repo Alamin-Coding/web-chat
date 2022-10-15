@@ -1,9 +1,10 @@
 
 import './App.css';
+import Ragistration from './component/registartion/index';
 
 function App() {
   return (
-    <h1>Chatting app</h1>
+    <Ragistration/>
   );
 }
 
