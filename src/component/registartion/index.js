@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { RiEyeFill, RiEyeCloseFill } from 'react-icons/ri';
 
 const Registration = () => {
+
+  //Conditional icon
+  let [passwordShow, setPasswordShow] = useState(false);
   return (
     <div>
       <div className='container mx-auto flex items-center'>
@@ -24,8 +28,14 @@ const Registration = () => {
 
             <div className=''>
               <div className='mt-8 relative'>
-                <input className='rounded-lg border-border border py-6 px-12 w-96' type="password" id='email' />
+                <input className='rounded-lg border-border border py-6 px-12 w-96' type={passwordShow?"text":"password"} id='email' />
                 <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Password</label>
+                <div className='absolute top-[28px] right-2'>
+                  {passwordShow ?
+                    <RiEyeFill onClick={() => setPasswordShow(!passwordShow)} /> :
+                    <RiEyeCloseFill onClick={() => setPasswordShow(!passwordShow)} /> 
+                  }
+              </div>
               </div>
             </div>
 
@@ -33,8 +43,8 @@ const Registration = () => {
               <button className='w-full rounded-full py-[19px] px-[130px] text-white font-nunito font-medium bg-btncolor' type='submit'>Sign Up</button>
             </div>
 
-            <div>
-              <p className='text-center'>Already  have an account ? <a href="/">Sign In</a></p>
+            <div className='mt-6'>
+              <p className='text-center'>Already  have an account ? <a className='text-orange-500' href="/">Sign In</a></p>
             </div>
           </div>
         </div>
