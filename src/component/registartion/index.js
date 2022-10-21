@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
-import { RiEyeFill, RiEyeCloseFill } from 'react-icons/ri';
+import { RiEyeCloseFill, RiEyeFill } from 'react-icons/ri';
+import { Dna } from 'react-loader-spinner';
+import { toast, ToastContainer } from 'react-toastify';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification  } from "firebase/auth";
 
 const Registration = () => {
+  const auth = getAuth();
   let [email, setEmail] = useState("");
   let [fullName, setFullName] = useState("");
   let [password, setPassword] = useState("");
+  
+  //Success Massage
+  let [success, setSuccess] = useState("");
 
 //Error Massage
   let [emailErr, setEmailErr] = useState("");
   let [fullNameErr, setFullNameErr] = useState("");
   let [passwordErr, setPasswordErr] = useState("");
+
+// Loading 
+let [loading, setLoading] = useState(false);
 
   let handleEmail = (e) => {
     setEmail(e.target.value.trim());
@@ -55,14 +65,43 @@ const Registration = () => {
         setPasswordErr("Password  must be eight characters or longer")
       }
     }
+    if (email && fullName && password) {
+      createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        setSuccess("Registration Successfully")
+        setLoading(true)
+        setEmail("")
+        setFullName("")
+        setPassword("")
+        toast.success('🦄 Registration Successfully , Please verify your email!', {
+          position: "top-center",
+          autoClose: 1000,
+          theme: "dark",
+          });
+          setTimeout(() => { //Loading Button animation
+            setLoading(false)
+          },1700)
+          sendEmailVerification(auth.currentUser)
+      })
+      .catch((error) => {
+        if (error.code.includes("auth/email-already-in-use")) {
+          setEmailErr("Email-already-in-use")
+        }
+      });
+    } 
   }
 
   //Conditional icon
   let [passwordShow, setPasswordShow] = useState(false);
+  
 
 
   return (
     <div>
+        <ToastContainer />
+        {success && (
+            <p className='py-2 text-white text-center bg-lime-700'>{success}</p>
+        )}
       <div className='container mx-auto flex items-center'>
         <div className='w-2/4 pl-6 '>
           <h1 className='text-primary text-4xl font-nunito font-bold'>Get started with easily register</h1>
@@ -70,7 +109,7 @@ const Registration = () => {
           <div className='w-96'>
             <div className=''>
               <div className='mt-8 relative'>
-                <input className='rounded-lg border-border border py-6 px-12 w-96' type="email" id='email' onChange={handleEmail} />
+                <input className='rounded-lg border-border border py-6 px-12 w-96' type="email" id='email' onChange={handleEmail} value={email} />
                 <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Email Address</label>
               </div>
               {emailErr && (
@@ -80,7 +119,7 @@ const Registration = () => {
 
             <div className=''>
               <div className='mt-8 relative'>
-                <input className='rounded-lg border-border border py-6 px-12 w-96' type="text" id='text' onChange={handleFullName} />
+                <input className='rounded-lg border-border border py-6 px-12 w-96' type="text" id='text' onChange={handleFullName} value={fullName} />
                 <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Full name</label>
               </div>
               {fullNameErr && (
@@ -90,7 +129,7 @@ const Registration = () => {
 
             <div className=''>
               <div className='mt-8 relative'>
-                <input className='rounded-lg border-border border py-6 px-12 w-96' type={passwordShow?"text":"password"} id='password' onChange={handlePassword} />
+                <input className='rounded-lg border-border border py-6 px-12 w-96' type={passwordShow?"text":"password"} id='password' onChange={handlePassword} value={password} />
                 <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Password</label>
                 <div className='absolute top-[28px] right-2'>
                   {passwordShow ?
@@ -105,11 +144,24 @@ const Registration = () => {
             </div>
 
             <div className=' mt-8'>
-              <button className='w-full rounded-full py-[19px] px-[130px] text-white font-nunito font-medium bg-btncolor' type='submit' onClick={handleForm}>Sign Up</button>
+              {loading ?
+                <button className='w-full rounded-full px-[130px] text-white font-nunito font-medium bg-btncolor'>
+                  <Dna
+                    visible={true}
+                    height="62"
+                    width="132"
+                    ariaLabel="dna-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="dna-wrapper"
+                  />
+                </button>
+                :
+                <button className='w-full rounded-full py-[19px] text-center text-white font-nunito font-medium bg-btncolor' type='submit' onClick={handleForm}>Sign Up</button>
+              }
             </div>
 
             <div className='mt-6'>
-              <p className='text-center'>Already  have an account ? <a className='text-orange-500' href="/">Sign In</a></p>
+              <p className='text-center'>Already  have an account ? <a className='text-orange-500' href="/login">Sign In</a></p>
             </div>
           </div>
         </div>

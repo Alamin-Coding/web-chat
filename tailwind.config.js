@@ -11,6 +11,7 @@ module.exports = {
       },
       fontFamily: {
         'nunito': ['Nunito', 'sans-serif'],
+        'open': ['Open Sans', 'sans-serif'],
       }
     },
   },
