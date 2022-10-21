@@ -12,8 +12,6 @@ const Registration = () => {
   let [fullName, setFullName] = useState("");
   let [password, setPassword] = useState("");
   
-  //Success Massage
-  let [success, setSuccess] = useState("");
 
 //Error Massage
   let [emailErr, setEmailErr] = useState("");
@@ -71,7 +69,6 @@ const Registration = () => {
     if (email && fullName && password) {
       createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
-        setSuccess("Registration Successfully")
         setLoading(true)
         setEmail("")
         setFullName("")
@@ -98,49 +95,43 @@ const Registration = () => {
   return (
     <div>
         <ToastContainer />
-        {success && (
+        {/* {success && (
             <p className='py-2 text-white text-center bg-lime-700'>{success}</p>
-        )}
+        )} */}
       <div className='container mx-auto flex items-center'>
         <div className='w-2/4 pl-6 '>
           <h1 className='text-primary text-4xl font-nunito font-bold'>Get started with easily register</h1>
           <p className='text-secondary text-xl font-nunito font-normal'>Free register and you can enjoy it</p>
           <div className='w-96'>
-            <div className=''>
-              <div className='mt-8 relative'>
-                <input className='rounded-lg border-border border py-6 px-12 w-96' type="email" id='email' onChange={handleEmail} value={email} />
-                <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Email Address</label>
-              </div>
-              {emailErr && (
-                <span className='text-red-400'>{emailErr}</span>
-              )}
+            <div className='mt-8 relative'>
+              <input className='rounded-lg border-border border py-6 px-12 w-96' type="email" id='email' onChange={handleEmail} value={email} />
+              <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Email Address</label>
             </div>
+            {emailErr && (
+              <span className='text-red-400'>{emailErr}</span>
+            )}
 
-            <div className=''>
-              <div className='mt-8 relative'>
-                <input className='rounded-lg border-border border py-6 px-12 w-96' type="text" id='text' onChange={handleFullName} value={fullName} />
-                <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Full name</label>
-              </div>
-              {fullNameErr && (
-                <span className='text-red-400'>{fullNameErr}</span>
-              )}
+            <div className='mt-8 relative'>
+              <input className='rounded-lg border-border border py-6 px-12 w-96' type="text" id='text' onChange={handleFullName} value={fullName} />
+              <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Full name</label>
             </div>
+            {fullNameErr && (
+              <span className='text-red-400'>{fullNameErr}</span>
+            )}
 
-            <div className=''>
-              <div className='mt-8 relative'>
-                <input className='rounded-lg border-border border py-6 px-12 w-96' type={passwordShow?"text":"password"} id='password' onChange={handlePassword} value={password} />
-                <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Password</label>
-                <div className='absolute top-[28px] right-2'>
-                  {passwordShow ?
-                    <RiEyeFill onClick={() => setPasswordShow(!passwordShow)} /> :
-                    <RiEyeCloseFill onClick={() => setPasswordShow(!passwordShow)} /> 
-                  }
-                </div>
+            <div className='mt-8 relative'>
+              <input className='rounded-lg border-border border py-6 px-12 w-96' type={passwordShow?"text":"password"} id='password' onChange={handlePassword} value={password} />
+              <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Password</label>
+              <div className='absolute top-[28px] right-2'>
+                {passwordShow ?
+                  <RiEyeFill onClick={() => setPasswordShow(!passwordShow)} /> :
+                  <RiEyeCloseFill onClick={() => setPasswordShow(!passwordShow)} /> 
+                }
               </div>
-              {passwordErr && (
-                <span className='text-red-400'>{passwordErr}</span>
-              )}
             </div>
+            {passwordErr && (
+              <span className='text-red-400'>{passwordErr}</span>
+            )}
 
             <div className=' mt-8'>
               {loading ?

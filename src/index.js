@@ -9,9 +9,10 @@ import {
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
 import firebaseConfig from './firebaseConfig';
-import Registration from './component/registartion';
-import Login from './component/login';
-import Home from './component/home';
+import Registration from './component/pages/registration';
+import Login from './component/pages/login';
+import Home from './component/pages/home';
+import Forgotpassword from './component/pages/forgotPassword';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login/>,
+  },
+  {
+    path: "/forgot-password",
+    element: <Forgotpassword/>,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -1,6 +1,6 @@
 
 import './App.css';
-import Ragistration from './component/registartion/index';
+import Ragistration from './component/pages/registration/index';
 
 function App() {
   return (
