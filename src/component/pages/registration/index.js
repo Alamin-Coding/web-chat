@@ -98,13 +98,13 @@ const Registration = () => {
         {/* {success && (
             <p className='py-2 text-white text-center bg-lime-700'>{success}</p>
         )} */}
-      <div className='container mx-auto flex items-center'>
-        <div className='w-2/4 pl-6 '>
-          <h1 className='text-primary text-4xl font-nunito font-bold'>Get started with easily register</h1>
+      <div className='container mx-auto flex items-center flex-col-reverse md:flex-row'>
+        <div className='w-full md:w-2/4 md:pl-6 '>
+          <h1 className='text-primary xl:text-4xl lg:text-3xl font-nunito font-bold'>Get started with easily register</h1>
           <p className='text-secondary text-xl font-nunito font-normal'>Free register and you can enjoy it</p>
-          <div className='w-96'>
+          <div className='w-full md:w-96'>
             <div className='mt-8 relative'>
-              <input className='rounded-lg border-border border py-6 px-12 w-96' type="email" id='email' onChange={handleEmail} value={email} />
+              <input className='rounded-lg border-border border py-6 px-12 w-full md:w-96' type="email" id='email' onChange={handleEmail} value={email} />
               <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Email Address</label>
             </div>
             {emailErr && (
@@ -112,7 +112,7 @@ const Registration = () => {
             )}
 
             <div className='mt-8 relative'>
-              <input className='rounded-lg border-border border py-6 px-12 w-96' type="text" id='text' onChange={handleFullName} value={fullName} />
+              <input className='rounded-lg border-border border py-6 px-12 w-full md:w-96' type="text" id='text' onChange={handleFullName} value={fullName} />
               <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Full name</label>
             </div>
             {fullNameErr && (
@@ -120,7 +120,7 @@ const Registration = () => {
             )}
 
             <div className='mt-8 relative'>
-              <input className='rounded-lg border-border border py-6 px-12 w-96' type={passwordShow?"text":"password"} id='password' onChange={handlePassword} value={password} />
+              <input className='rounded-lg border-border border py-6 px-12 w-full md:w-96' type={passwordShow?"text":"password"} id='password' onChange={handlePassword} value={password} />
               <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Password</label>
               <div className='absolute top-[28px] right-2'>
                 {passwordShow ?
@@ -155,8 +155,8 @@ const Registration = () => {
             </div>
           </div>
         </div>
-        <div className='w-2/4'>
-          <img className='h-screen w-full object-cover' src="images/registration.png" alt="pic" />
+        <div className='w-full md:w-2/4'>
+          <img className='h-48 md:h-screen w-full object-cover' src="images/registration.png" alt="pic" />
         </div>
       </div>
     </div>
