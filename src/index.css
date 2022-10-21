@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.registration span {
+  position: absolute;
+}
+span {
+  font-size: 0.8em;
+}

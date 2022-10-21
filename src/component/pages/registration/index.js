@@ -93,36 +93,36 @@ const Registration = () => {
   }
 
   return (
-    <div>
+    <div className='registration'>
         <ToastContainer />
         {/* {success && (
             <p className='py-2 text-white text-center bg-lime-700'>{success}</p>
         )} */}
       <div className='container mx-auto flex items-center flex-col-reverse md:flex-row'>
         <div className='w-full md:w-2/4 md:pl-6 '>
-          <h1 className='text-primary xl:text-4xl lg:text-3xl font-nunito font-bold'>Get started with easily register</h1>
-          <p className='text-secondary text-xl font-nunito font-normal'>Free register and you can enjoy it</p>
-          <div className='w-full md:w-96'>
+          <h1 className='text-primary text-xl md:text-[1.3em]  xl:text-4xl lg:text-2xl font-nunito font-bold'>Get started with easily register</h1>
+          <p className='text-secondary text-[18px] lg:text-xl font-nunito font-normal'>Free register and you can enjoy it</p>
+          <div className='w-full md:w-10/12 lg:w-96'>
             <div className='mt-8 relative'>
-              <input className='rounded-lg border-border border py-6 px-12 w-full md:w-96' type="email" id='email' onChange={handleEmail} value={email} />
-              <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Email Address</label>
+              <input className='rounded-lg border-border border py-3 md:py-6 px-3 md:px-12 w-full lg:w-96' type="email" id='email' onChange={handleEmail} value={email} />
+              <label className='absolute top-[-10px] md:top-[-12px] left-[12px] bg-white px-3 text-sm md:text-base' htmlFor="email">Email Address</label>
             </div>
             {emailErr && (
               <span className='text-red-400'>{emailErr}</span>
             )}
 
             <div className='mt-8 relative'>
-              <input className='rounded-lg border-border border py-6 px-12 w-full md:w-96' type="text" id='text' onChange={handleFullName} value={fullName} />
-              <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Full name</label>
+              <input className='rounded-lg border-border border py-3 md:py-6 px-3 md:px-12 w-full lg:w-96' type="text" id='text' onChange={handleFullName} value={fullName} />
+              <label className='absolute top-[-10px] md:top-[-12px] left-[12px] bg-white px-3 text-sm md:text-base' htmlFor="email">Full name</label>
             </div>
             {fullNameErr && (
               <span className='text-red-400'>{fullNameErr}</span>
             )}
 
             <div className='mt-8 relative'>
-              <input className='rounded-lg border-border border py-6 px-12 w-full md:w-96' type={passwordShow?"text":"password"} id='password' onChange={handlePassword} value={password} />
-              <label className='absolute top-[-12px] left-[12px] bg-white px-3' htmlFor="email">Password</label>
-              <div className='absolute top-[28px] right-2'>
+              <input className='rounded-lg border-border border py-3 md:py-6 px-3 md:px-12 w-full lg:w-96' type={passwordShow?"text":"password"} id='password' onChange={handlePassword} value={password} />
+              <label className='absolute top-[-10px] md:top-[-12px] left-[12px] bg-white px-3 text-sm md:text-base' htmlFor="email">Password</label>
+              <div className='absolute top-[19px] md:top-[28px] right-2'>
                 {passwordShow ?
                   <RiEyeFill onClick={() => setPasswordShow(!passwordShow)} /> :
                   <RiEyeCloseFill onClick={() => setPasswordShow(!passwordShow)} /> 
@@ -135,7 +135,7 @@ const Registration = () => {
 
             <div className=' mt-8'>
               {loading ?
-                <button className='w-full rounded-full px-[130px] text-white font-nunito font-medium bg-btncolor'>
+                <button className='w-full rounded-full text-center text-white font-nunito font-medium bg-btncolor'>
                   <Dna
                     visible={true}
                     height="62"
@@ -146,7 +146,7 @@ const Registration = () => {
                   />
                 </button>
                 :
-                <button className='w-full rounded-full py-[19px] text-center text-white font-nunito font-medium bg-btncolor' type='submit' onClick={handleForm}>Sign Up</button>
+                <button className='w-full rounded-full py-2 md:py-[19px] text-center text-white font-nunito font-medium bg-btncolor' type='submit' onClick={handleForm}>Sign Up</button>
               }
             </div>
 
@@ -156,7 +156,7 @@ const Registration = () => {
           </div>
         </div>
         <div className='w-full md:w-2/4'>
-          <img className='h-48 md:h-screen w-full object-cover' src="images/registration.png" alt="pic" />
+          <img className='h-40 md:h-screen w-full object-cover' src="images/registration.png" alt="pic" />
         </div>
       </div>
     </div>

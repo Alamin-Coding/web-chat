@@ -67,13 +67,13 @@ const Login = () => {
   return (
     <div>
         <ToastContainer />
-        <div className='container mx-auto flex items-center'>
-            <div className='w-2/4 pl-6 '>
-              <h1 className='text-primary text-4xl font-nunito font-bold'>Login to your account!</h1>
-              <div className='w-96'>
+        <div className='container mx-auto flex items-center flex-col-reverse md:flex-row'>
+            <div className='w-full md:w-2/4 md:pl-6 '>
+              <h1 className='text-primary text-xl md:text-[1.3em]  xl:text-4xl lg:text-2xl font-nunito font-bold'>Login to your account!</h1>
+              <div className='w-full md:w-10/12 lg:w-96'>
                   <div className='mt-8'>
                       <label className='text-[##03014C] text-sm opacity-50 font-open font-normal ' htmlFor="email">Email Address</label>
-                      <input className='border-gray-300 border-b py-6 w-96 focus:border-gray-300 focus:shadow-none focus:outline-none mt-[-5px] ' type="email" id='email' placeholder='Youraddres@email.com' onChange={handleEmail} />
+                      <input className='border-gray-300 border-b py-3 md:py-6 w-full lg:w-96 focus:border-gray-300 focus:shadow-none focus:outline-none mt-[-5px] ' type="email" id='email' placeholder='Youraddres@email.com' onChange={handleEmail} />
                       {emailErr && (
                           <span className='text-red-400'>{emailErr}</span>
                       )}
@@ -81,7 +81,7 @@ const Login = () => {
 
                   <div className='mt-8 relative'>
                       <label className='text-[##03014C] text-sm opacity-50 font-open font-normal ' htmlFor="email">Password</label>
-                      <input className='border-gray-300 border-b py-6 w-96 focus:border-gray-300 focus:shadow-none focus:outline-none mt-[-5px] ' type={passwordShow?"text":"password"} placeholder='Enter your password' onChange={handlePassword} />
+                      <input className='border-gray-300 border-b py-3 md:py-6 w-full lg:w-96 focus:border-gray-300 focus:shadow-none focus:outline-none mt-[-5px] ' type={passwordShow?"text":"password"} placeholder='Enter your password' onChange={handlePassword} />
                       {passwordErr && (
                           <span className='text-red-400'>{passwordErr}</span>
                       )}
@@ -95,7 +95,7 @@ const Login = () => {
 
                   <div className=' mt-8'>
                     {loading ?
-                      <button className='w-full rounded-full px-[130px] text-white font-nunito font-medium bg-btncolor'>
+                      <button className='w-full rounded-fullpy-2 md:py-[19px] text-center text-white font-nunito font-medium bg-btncolor'>
                         <Dna
                           visible={true}
                           height="62"
@@ -106,7 +106,7 @@ const Login = () => {
                         />
                       </button>
                       :
-                      <button className='w-full rounded-full py-[19px] text-center text-white font-nunito font-medium bg-btncolor' type='submit' onClick={handleForm}>Login to Continue</button>
+                      <button className='w-full rounded-full py-2 md:py-[19px] text-center text-white font-nunito font-medium bg-btncolor' type='submit' onClick={handleForm}>Login to Continue</button>
                     }
                   </div>
 
@@ -116,8 +116,8 @@ const Login = () => {
                   </div>
               </div>
             </div>
-            <div className='w-2/4'>
-                <img className='h-screen w-full object-cover' src="images/login.png" alt="pic" />
+            <div className='w-full md:w-2/4'>
+                <img className='h-40 md:h-screen w-full object-cover' src="images/login.png" alt="pic" />
             </div>
         </div>
     </div>
