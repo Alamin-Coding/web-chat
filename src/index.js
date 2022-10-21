@@ -11,10 +11,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import firebaseConfig from './firebaseConfig';
 import Registration from './component/registartion';
 import Login from './component/login';
+import Home from './component/home';
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Home/>,
+  },
+  {
+    path: "/registration",
     element: <Registration/>,
   },
   {

@@ -3,8 +3,10 @@ import { RiEyeCloseFill, RiEyeFill } from 'react-icons/ri';
 import { Dna } from 'react-loader-spinner';
 import { toast, ToastContainer } from 'react-toastify';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification  } from "firebase/auth";
+import { Link, useNavigate } from 'react-router-dom';
 
 const Registration = () => {
+  const navigate = useNavigate()
   const auth = getAuth();
   let [email, setEmail] = useState("");
   let [fullName, setFullName] = useState("");
@@ -18,9 +20,10 @@ const Registration = () => {
   let [fullNameErr, setFullNameErr] = useState("");
   let [passwordErr, setPasswordErr] = useState("");
 
-// Loading 
-let [loading, setLoading] = useState(false);
-
+  
+  let [passwordShow, setPasswordShow] = useState(false); //Conditional icon
+  let [loading, setLoading] = useState(false); //Loading Animation 
+ 
   let handleEmail = (e) => {
     setEmail(e.target.value.trim());
     setEmailErr("");
@@ -80,6 +83,7 @@ let [loading, setLoading] = useState(false);
           });
           setTimeout(() => { //Loading Button animation
             setLoading(false)
+            navigate("/login")
           },1700)
           sendEmailVerification(auth.currentUser)
       })
@@ -90,11 +94,6 @@ let [loading, setLoading] = useState(false);
       });
     } 
   }
-
-  //Conditional icon
-  let [passwordShow, setPasswordShow] = useState(false);
-  
-
 
   return (
     <div>
@@ -161,7 +160,7 @@ let [loading, setLoading] = useState(false);
             </div>
 
             <div className='mt-6'>
-              <p className='text-center'>Already  have an account ? <a className='text-orange-500' href="/login">Sign In</a></p>
+              <p className='text-center'>Already  have an account ? <Link className='text-orange-500' to="/login">Sign In</Link></p>
             </div>
           </div>
         </div>
