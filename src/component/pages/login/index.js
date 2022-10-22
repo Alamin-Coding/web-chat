@@ -17,7 +17,7 @@ const Login = () => {
   
     
     let [passwordShow, setPasswordShow] = useState(false); //Conditional icon
-    let [loading, setLoading] = useState(true); //Loading Animation 
+    let [loading, setLoading] = useState(false); //Loading Animation 
    
     let handleEmail = (e) => {
       setEmail(e.target.value.trim());

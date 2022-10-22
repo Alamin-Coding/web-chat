@@ -29,7 +29,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        'primary': '#11175D',
+        'primary': '#5F35F5',
         'secondary': '#64699D',
         'border': '#11175D',
         'btncolor': '#5F35F5',
