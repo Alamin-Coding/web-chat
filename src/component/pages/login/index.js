@@ -17,7 +17,7 @@ const Login = () => {
   
     
     let [passwordShow, setPasswordShow] = useState(false); //Conditional icon
-    let [loading, setLoading] = useState(false); //Loading Animation 
+    let [loading, setLoading] = useState(true); //Loading Animation 
    
     let handleEmail = (e) => {
       setEmail(e.target.value.trim());
@@ -85,7 +85,7 @@ const Login = () => {
                       {passwordErr && (
                           <span className='text-red-400'>{passwordErr}</span>
                       )}
-                      <div className='absolute top-[54px] right-2'>
+                      <div className='absolute top-10 md:top-[54px] right-2'>
                           {passwordShow ?
                               <RiEyeFill onClick={() => setPasswordShow(!passwordShow)} /> :
                               <RiEyeCloseFill onClick={() => setPasswordShow(!passwordShow)} /> 
@@ -95,10 +95,10 @@ const Login = () => {
 
                   <div className=' mt-8'>
                     {loading ?
-                      <button className='w-full rounded-fullpy-2 md:py-[19px] text-center text-white font-nunito font-medium bg-btncolor'>
+                      <button className='w-full rounded-full h-[40px] md:h-[60px] text-white font-nunito font-medium bg-btncolor flex justify-center'>
                         <Dna
                           visible={true}
-                          height="62"
+                          height="100%"
                           width="132"
                           ariaLabel="dna-loading"
                           wrapperStyle={{}}
