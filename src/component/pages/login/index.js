@@ -4,8 +4,11 @@ import { Dna } from 'react-loader-spinner';
 import { toast, ToastContainer } from 'react-toastify';
 import { getAuth, signInWithEmailAndPassword  } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { userLoginInfo } from '../../../slices/userSlice';
 
 const Login = () => { 
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const auth = getAuth();
     let [email, setEmail] = useState("");
@@ -35,20 +38,23 @@ const Login = () => {
       }else{
         if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
           setEmailErr("Invalid Email")
+        }                     
         }
-        }
+
       if (!password) {
         setPasswordErr("Password is Required")
       }
       if (email && password && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
         signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
+        .then((user) => {
             setLoading(true)
             toast.success('🦄 Login Successfully', {
                 position: "top-center",
                 autoClose: 1000,
                 theme: "dark",
             });
+            dispatch(userLoginInfo(user.user));
+            localStorage.setItem("userInfo", JSON.stringify(user))
             setTimeout(()=> {
                 navigate("/")
                 setLoading(false)

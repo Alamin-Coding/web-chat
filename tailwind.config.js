@@ -37,8 +37,10 @@ module.exports = {
       fontFamily: {
         'nunito': ['Nunito', 'sans-serif'],
         'open': ['Open Sans', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif']
       }
     },
   },
   plugins: [],
 }
+
