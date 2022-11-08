@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { getAuth, signInWithEmailAndPassword  } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { userLoginInfo } from '../../../slices/userSlice';
+import { userLoginInfo } from '../../slices/userSlice';
 
 const Login = () => { 
     const dispatch = useDispatch()

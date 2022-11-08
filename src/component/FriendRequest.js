@@ -3,7 +3,7 @@ import React from 'react';
 const FriendRequest = (props) => {
   return (
     <div className='grid grid-cols-[auto_1fr_auto] gap-3 items-center py-3 border-b border-b-border last:border-none last:pb-0'>
-        <div className='relative w-14 h-14 rounded-full after:w-3 after:h-3 after:rounded-full after:bg-green-500 after:bottom-1 after:right-1 after:content-[""] after:absolute'>
+        <div className='w-14 h-14 rounded-full after:w-3 after:h-3 after:rounded-full '>
             <img src={props.src} alt="group img" />
         </div>
         <div>

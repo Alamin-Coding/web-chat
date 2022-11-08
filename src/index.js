@@ -3,16 +3,15 @@ import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
 } from "react-router-dom";
 
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
 import firebaseConfig from './firebaseConfig';
-import Registration from './component/pages/registration';
-import Login from './component/pages/login';
-import Home from './component/pages/home';
-import Forgotpassword from './component/pages/forgotPassword';
+import Registration from './pages/registration';
+import Login from './pages/login';
+import Home from './pages/home';
+import Forgotpassword from './pages/forgotPassword';
 // Redux
 import store from './store'
 import { Provider } from 'react-redux'

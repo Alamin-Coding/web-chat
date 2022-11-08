@@ -103,13 +103,6 @@ const Registration = () => {
           <h1 className='text-primary text-xl md:text-[1.3em]  xl:text-4xl lg:text-2xl font-nunito font-bold'>Get started with easily register</h1>
           <p className='text-secondary text-[18px] lg:text-xl font-nunito font-normal'>Free register and you can enjoy it</p>
           <div className='w-full md:w-10/12 lg:w-96'>
-            <div className='mt-8 relative'>
-              <input className='rounded-lg border-border border py-3 md:py-6 px-3 md:px-12 w-full lg:w-96' type="email" id='email' onChange={handleEmail} value={email} />
-              <label className='absolute top-[-10px] md:top-[-12px] left-[12px] bg-white px-3 text-sm md:text-base' htmlFor="email">Email Address</label>
-            </div>
-            {emailErr && (
-              <span className='text-red-400'>{emailErr}</span>
-            )}
 
             <div className='mt-8 relative'>
               <input className='rounded-lg border-border border py-3 md:py-6 px-3 md:px-12 w-full lg:w-96' type="text" id='text' onChange={handleFullName} value={fullName} />
@@ -117,6 +110,14 @@ const Registration = () => {
             </div>
             {fullNameErr && (
               <span className='text-red-400'>{fullNameErr}</span>
+            )}
+
+            <div className='mt-8 relative'>
+              <input className='rounded-lg border-border border py-3 md:py-6 px-3 md:px-12 w-full lg:w-96' type="email" id='email' onChange={handleEmail} value={email} />
+              <label className='absolute top-[-10px] md:top-[-12px] left-[12px] bg-white px-3 text-sm md:text-base' htmlFor="email">Email Address</label>
+            </div>
+            {emailErr && (
+              <span className='text-red-400'>{emailErr}</span>
             )}
 
             <div className='mt-8 relative'>
