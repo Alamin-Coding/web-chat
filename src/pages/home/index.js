@@ -14,10 +14,39 @@ import FriendRequest from '../../component/FriendRequest';
 import UserList from '../../component/UserList';
 import BlockedUser from '../../component/BlockedUser';
 import { useState } from 'react';
+import Cropper from "react-cropper";
+import "cropperjs/dist/cropper.css";
 const Home = () => {
   const auth = getAuth();
   const data = useSelector((state) => state.userLoginInfo.userInfo);
   const navigate = useNavigate();
+
+
+  const [image, setImage] = useState("");
+  const [cropData, setCropData] = useState("#");
+  const [cropper, setCropper] = useState();
+
+  const handleProfileUpload = (e) => {
+    e.preventDefault();
+    let files;
+    if (e.dataTransfer) {
+      files = e.dataTransfer.files;
+    } else if (e.target) {
+      files = e.target.files;
+    }
+    console.log(files);
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImage(reader.result);
+    };
+    reader.readAsDataURL(files[0]);
+  };
+
+  const getCropData = () => {
+    if (typeof cropper !== "undefined") {
+      setCropData(cropper.getCroppedCanvas().toDataURL());
+    }
+  };
 
   const [uploadImage, setUploadImage] = useState(false)
 
@@ -47,12 +76,39 @@ const Home = () => {
                 <AiOutlineCloudUpload className='text-white text-2xl' />
               </div>
             </div>
-            <div className='bg-white flex items-center justify-center h-screen w-full fixed top-0 left-0 z-50 '>
-                <div className='w-2/4 p-6 rounded-lg '>
+            <div className='bg-slate-700/90 flex items-center justify-center h-screen w-full fixed top-0 left-0 z-50 '>
+                <div className='w-2/4 p-6 rounded-lg bg-slate-50 '>
+                  {/* Preview Image start */}
+                  {image && 
+                    <div className='mx-auto mb-3 w-12 md:w-20 lg:w-32 h-12 md:h-20 lg:h-32 rounded-full overflow-hidden'>
+                      <div className='w-full h-full img-preview'></div>
+                    </div>
+                  }
+                  {/* Preview Image end */}
                     <h2 className='text-primary text-xl md:text-[1.3em]  xl:text-4xl lg:text-2xl font-nunito font-bold pb-3' >Upload Your Profile Picture</h2>
-                    <input type="file" />
+                    <input type="file" onChange={handleProfileUpload} />
+                    {image && 
+                      <Cropper
+                        style={{ height: 400, width: "100%" }}
+                        zoomTo={0.5}
+                        initialAspectRatio={1}
+                        preview=".img-preview"
+                        src={image}
+                        viewMode={1}
+                        minCropBoxHeight={10}
+                        minCropBoxWidth={10}
+                        background={false}
+                        responsive={true}
+                        autoCropArea={1}
+                        checkOrientation={false} 
+                        onInitialized={(instance) => {
+                          setCropper(instance);
+                        }}
+                        guides={true}
+                      />
+                    }
                     <div className='py-5 flex gap-3'>
-                        <button className='py-3 px-5 rounded-md bg-primary text-white text-xl' >Upload</button>
+                        <button className='py-3 px-5 rounded-md bg-primary text-white text-xl' onClick={getCropData} >Upload</button>
                         <button className='py-3 px-5 rounded-md bg-orange-600 text-white text-xl' >Cancel</button>
                     </div>
                 </div>

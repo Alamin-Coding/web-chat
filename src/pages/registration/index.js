@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { RiEyeCloseFill, RiEyeFill } from 'react-icons/ri';
 import { Dna } from 'react-loader-spinner';
 import { toast, ToastContainer } from 'react-toastify';
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile  } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
 
 const Registration = () => {
@@ -68,6 +68,12 @@ const Registration = () => {
     }
     if (email && fullName && password) {
       createUserWithEmailAndPassword(auth, email, password)
+      .then((user) => {
+        updateProfile(auth.currentUser, {
+          displayName: fullName,
+          photoURL: 'images/profile.png'
+        })
+      })
       .then(() => {
         setLoading(true)
         setEmail("")
